@@ -2,10 +2,12 @@ package controller
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
+
 // 单个文件上传
 func Upload(c *gin.Context) {
 	// 文件上传
@@ -23,7 +25,6 @@ func Upload(c *gin.Context) {
 	//}
 	//c.String(http.StatusOK,fmt.Sprintf("文件 %s 上传成功 ", file.Filename))
 
-
 	// 单个文件上传
 	// file与文件上传的标志是一致的
 	file, err := c.FormFile("file")
@@ -35,13 +36,14 @@ func Upload(c *gin.Context) {
 		return
 	}
 	log.Println(file.Filename)
-	dst := fmt.Sprintf("/Users/haitao/Desktop/github/blog_go/data/%s", file.Filename)
+	dst := fmt.Sprintf("/goPj/data/%s", file.Filename)
 	// 上传文件到指定的目录
 	c.SaveUploadedFile(file, dst)
 	c.JSON(http.StatusOK, gin.H{
 		"message": fmt.Sprintf("'%s' uploaded!", file.Filename),
 	})
 }
+
 // 多个文件上传
 func Uploads(c *gin.Context) {
 	// 处理multipart forms提交文件时默认的内存限制是32 MiB
@@ -53,7 +55,7 @@ func Uploads(c *gin.Context) {
 
 	for index, file := range files {
 		log.Println(file.Filename)
-		dst := fmt.Sprintf("/Users/haitao/Desktop/github/blog_go/data/%s_%d", file.Filename, index)
+		dst := fmt.Sprintf("/goPj/data//%s_%d", file.Filename, index)
 		// 上传文件到指定的目录
 		c.SaveUploadedFile(file, dst)
 	}
