@@ -1,0 +1,11 @@
+#数据库配置
+server:
+  port:  8000
+datasource:
+  driverName:  mysql
+  host:  47.100.97.238
+  port:  3306
+  database:  blog
+  username:  admin
+  password:  admin
+  charset:  utf8
